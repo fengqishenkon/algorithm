@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS 
+
+//二分查找
+
+//https ://leetcode.cn/problems/binary-search/description/
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int left = 0;
+        int right = nums.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;  // 防止溢出
+
+            if (nums[mid] == target) {
+                return mid;  // 找到目标值，返回索引
+            }
+            else if (nums[mid] < target) {
+                left = mid + 1;  // 目标值在右半部分
+            }
+            else {
+                right = mid - 1;  // 目标值在左半部分
+            }
+        }
+
+        return -1;  // 未找到目标值
+    }
+};
